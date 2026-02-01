@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="login-container">
+    <h2>Delete Short URL</h2>
+    <p>Are you sure you want to delete <strong>{{ short.original_url }}</strong> ?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn">Yes, delete</button>
+      <a class="btn secondary" href="{% url 'short_list' %}">Cancel</a>
+    </form>
+  </div>
+{% endblock %}

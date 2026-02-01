@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="login-container">
+    <h2>Regenerate Key for {{ short.original_url|truncatechars:60 }}</h2>
+    <p>Current key: <strong>{{ short.key }}</strong></p>
+    <p>Are you sure you want to regenerate the short key? This will create a new short link and the old link will stop working.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn">Regenerate</button>
+      <a class="btn secondary" href="{% url 'short_list' %}">Cancel</a>
+    </form>
+  </div>
+{% endblock %}

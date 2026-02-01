@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}
+  <link rel="stylesheet" href="{% static 'app1/css/home.css' %}">
+  <!-- <div class="home-container">
+    <h1>Enter the url</h1>
+    <p><input type="text" placeholder="Enter URL here"></p>
+    <button type="submit">Submit</button>
+  </div> -->
+ {% if user.is_authenticated %}
+        <p id="log_out">
+            <a href="{% url 'logout' %}">Logout</a>
+        </p>
+
+        {% if records %}
+<!-- <table class="table table-dark table-striped-columns"> -->
+    <table>
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Original_URL</th>
+      <th scope="col">Short_URL</th>
+      <th scope="col">Created_At</th>
+      <th scope="col">Statistics</th>
+       
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <ul>
+      {% for record in records %}
+        <td><a href="{% url 'customer_record' record.id %}">{{ record.id }}</a></td>
+        <td>{{ record.original_url }}</td>
+        <td>{{ record.short_url }}</td>
+        <td>{{ record.created_at }}</td>
+        <td>{{ record.clicks }}</td>
+      {% endfor %}
+    </tr>
+    </ul>
+  {% endif %}
+
+        
+    {% else %}
+        <p id="log_out">
+            <a href="{% url 'login' %}">Login</a> 
+            <a href="{% url 'signup' %}">Sign Up</a>
+        </p>
+        <h1>Welcome, {{ user.username }}!</h1>
+    {% endif %}
+{% endblock %}

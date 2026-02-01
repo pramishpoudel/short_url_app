@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="login-container">
+    <h2>Statistics for {{ short.key }}</h2>
+    <p><strong>Original URL:</strong> <a href="{{ short.original_url }}" target="_blank">{{ short.original_url }}</a></p>
+    <p><strong>Short link:</strong> <a href="{% url 'short_redirect' short.key %}">{{ request.scheme }}://{{ request.get_host }}{% url 'short_redirect' short.key %}</a></p>
+    <p><strong>Clicks:</strong> {{ short.clicks }}</p>
+    <p><strong>Created at:</strong> {{ short.created_at }}</p>
+    <p><strong>Expires at:</strong> {{ short.expires_at|default:'Never' }}</p>
+
+    {% if qr_data_uri %}
+      <div style="margin-top:12px;">
+        <img src="{{ qr_data_uri }}" alt="QR code" style="width:160px;height:160px;display:block;margin-bottom:8px;border-radius:6px;border:1px solid #eef2f6;">
+        <a class="btn" href="{{ qr_data_uri }}" download="qr-{{ short.key }}.png">Download QR</a>
+      </div>
+    {% else %}
+      <p class="muted">QR code generation is unavailable on the server (missing library).</p>
+    {% endif %}
+
+    <p style="margin-top:12px;"><a class="nav-link" href="{% url 'short_list' %}">Back to list</a></p>
+  </div>
+{% endblock %}

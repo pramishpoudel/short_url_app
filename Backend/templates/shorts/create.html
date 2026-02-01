@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="login-container">
+    <h2>Create Short URL</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div>
+        {{ form.original_url.label_tag }}
+        {{ form.original_url }}
+        {{ form.original_url.errors }}
+      </div>
+
+      <div>
+        {{ form.custom_key.label_tag }}
+        {{ form.custom_key }}
+        {{ form.custom_key.errors }}
+      </div>
+
+      <div>
+        {{ form.expires_at.label_tag }}
+        {{ form.expires_at }}
+        {{ form.expires_at.errors }}
+      </div>
+
+      <button type="submit" class="btn">Create</button>
+    </form>
+    <p><a class="nav-link" href="{% url 'short_list' %}">Manage my short URLs</a></p>
+  </div>
+{% endblock %}

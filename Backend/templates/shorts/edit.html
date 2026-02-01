@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="login-container">
+    <h2>Edit Short URL</h2>
+    <p>Current key: <strong>{{ short.key }}</strong> &nbsp; <small class="muted">(You can change it below)</small></p>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div>
+        {{ form.original_url.label_tag }}
+        {{ form.original_url }}
+        {{ form.original_url.errors }}
+      </div>
+
+      <div>
+        {{ form.custom_key.label_tag }}
+        {{ form.custom_key }}
+        {{ form.custom_key.errors }}
+        <small class="muted">Keep empty to keep current key, or enter an alphanumeric custom alias.</small>
+      </div>
+
+      <div>
+        {{ form.expires_at.label_tag }}
+        {{ form.expires_at }}
+        {{ form.expires_at.errors }}
+        <small class="muted">If left empty, expiration will default to 30 days from now ({{ default_expires|date:"Y-m-d H:i" }}).</small>
+      </div>
+
+      <button type="submit" class="btn">Save</button>
+    </form>
+  </div>
+{% endblock %}

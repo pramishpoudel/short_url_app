@@ -1,0 +1,19 @@
+[project]
+name = "vrittech"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "pramish poudel",email = "pramishpoudel502@gmail.com"}
+]
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "django (>=6.0.1,<7.0.0)",
+    "psycopg[binary] (>=3.3.2,<4.0.0)",
+    "qrcode[pil] (>=8.2,<9.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+package-mode = false

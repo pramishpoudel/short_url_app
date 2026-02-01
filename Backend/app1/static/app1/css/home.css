@@ -1,0 +1,84 @@
+ 
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #f7fbff 0%, #eef6ff 100%);
+  color: #222;
+  /* Changed height to min-height to allow for scrolling */
+  min-height: 100vh;
+  width: 100vw;
+  /* Ensure no flex centering is active on the body */
+  display: block; 
+}
+
+#log_out {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+}
+
+.home-container {
+  max-width: auto;
+  height: auto;
+  /* Top: 2rem (for a small gap), Right/Left: auto (to center horizontally), Bottom: 2rem */
+  margin: 2rem 2rem 2rem 2rem; 
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(23, 43, 77, 0.08);
+}
+
+/* .home-container {
+  max-width: 900px;
+  width: 90%;  
+  height: auto;
+  margin: 0;  
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(23, 43, 77, 0.08);
+}  */
+
+
+.home-container h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  text-align: center;
+  color: #0b4b6f;
+}
+
+.home-container p {
+  margin: 0 0 1rem 0;
+  line-height: 2rem;
+  height: auto;
+  text-align: center;
+  color: #444;
+}
+
+.home-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.home-actions a {
+  display: inline-block;
+  padding: 0.6rem 1.05rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg,#2b9fd6,#1b6fb0);
+  font-weight: 600;
+}
+
+.home-actions a.secondary {
+  background: #e9eef6;
+  color: #1b3550;
+  border: 1px solid #d9e2f0;
+}
+
+@media (max-width: 600px) {
+  .home-container { margin: 3rem 1rem; padding: 1.25rem; }
+  .home-container h1 { font-size: 1.4rem; }
+}
