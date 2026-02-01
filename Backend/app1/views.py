@@ -46,7 +46,6 @@ def register_view(request):
             messages.error(request, "Please correct the errors below.")
     else:
         form = UserCreationForm()
-
     return render(request, "signup.html", {"form": form})
 
 
@@ -62,7 +61,6 @@ def short_create(request):
         original_url = form.cleaned_data['original_url']
         custom_key = form.cleaned_data.get('custom_key')
         expires_at = form.cleaned_data.get('expires_at') or default_expires
-
         try:
             if custom_key:
                 su = ShortURL(owner=request.user, original_url=original_url, key=custom_key, expires_at=expires_at)
@@ -73,11 +71,9 @@ def short_create(request):
             # catch IntegrityError or other DB errors (e.g., race collision)
             form.add_error('custom_key', 'Alias already in use; please choose another.')
             return render(request, 'shorts/create.html', {'form': form})
-
         messages.success(request, f'Short URL created: {su.short_path}')
         return redirect('short_list')
-
-    # show default expires in form initial if you want (not necessary for creation page)
+    # show default expires in form initial we  want (not necessary for creation page)
     return render(request, 'shorts/create.html', {'form': form, 'default_expires': default_expires})
 
 
@@ -92,7 +88,6 @@ def short_edit(request, pk):
     su = get_object_or_404(ShortURL, pk=pk)
     if su.owner != request.user:
         return HttpResponseForbidden()
-
     # default expiration (30 days) if none exists
     default_expires = timezone.now() + timedelta(days=30)
     initial_expires = su.expires_at or default_expires
@@ -145,7 +140,6 @@ def short_stats(request, pk):
     su = get_object_or_404(ShortURL, pk=pk)
     if su.owner != request.user:
         return HttpResponseForbidden()
-
     qr_data_uri = None
     try:
         url = request.build_absolute_uri(su.short_path)
@@ -157,7 +151,6 @@ def short_stats(request, pk):
         qr_data_uri = f"data:image/png;base64,{data}"
     except Exception:
         qr_data_uri = None
-
     return render(request, 'shorts/stats.html', {'short': su, 'qr_data_uri': qr_data_uri})
 
 

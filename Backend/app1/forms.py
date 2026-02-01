@@ -1,4 +1,6 @@
 from django import forms
+from django.utils import timezone
+from .models import ShortURL
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=150, widget=forms.TextInput(attrs={
@@ -55,8 +57,7 @@ class RegistrationForm(forms.Form):
             )
 
 
-from django.utils import timezone
-from .models import ShortURL
+
 
 
 class ShortURLForm(forms.Form):
